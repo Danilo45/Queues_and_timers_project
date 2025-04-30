@@ -1,0 +1,5 @@
+../Core/Src/task_handler.c:10:6:menu_task	1
+../Core/Src/task_handler.c:21:6:cmd_task	1
+../Core/Src/task_handler.c:30:6:print_task	1
+../Core/Src/task_handler.c:39:6:led_task	1
+../Core/Src/task_handler.c:48:6:rtc_task	1
