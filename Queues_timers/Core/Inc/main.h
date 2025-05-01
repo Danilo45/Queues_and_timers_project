@@ -34,6 +34,8 @@ extern "C" {
 #include "FreeRTOS.h"
 #include "task.h"
 #include "queue.h"
+#include <string.h>
+
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
@@ -85,6 +87,8 @@ void print_task(void* parameters);
 void led_task(void* parameters);
 void rtc_task(void* parameters);
 
+void led_effect(int n);
+void led_effect_stop(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
@@ -157,7 +161,10 @@ void rtc_task(void* parameters);
 
 /* USER CODE BEGIN Private defines */
 
-
+#define LED1 LD4_Pin
+#define LED2 LD3_Pin
+#define LED3 LD5_Pin
+#define LED4 LD6_Pin
 
 /* USER CODE END Private defines */
 

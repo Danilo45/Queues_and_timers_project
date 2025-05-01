@@ -6,3 +6,12 @@
  */
 
 
+#include "main.h"
+
+void led_effect(int n){
+
+}
+
+void led_effect_stop(void){
+
+}
