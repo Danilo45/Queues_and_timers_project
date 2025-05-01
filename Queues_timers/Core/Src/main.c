@@ -156,7 +156,7 @@ int main(void)
   configASSERT(queue_print != NULL);
 
 
-  HAL_UART_Receive_IT(&huart2, &user_data, 1);
+  HAL_UART_Receive_IT(&huart2, (uint8_t*)&user_data, 1);
 
   //start the freeRTOS scheduler
   vTaskStartScheduler();
@@ -451,7 +451,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
   }else{
     /*Queue is full */
 
-    if(user_data == "\n")
+    if(user_data == '\n')
     {
       /*user_data = '\n' */
 
@@ -463,7 +463,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 
 
   /*send notification to command handling task if user_data = '\n' */
-  if(user_data == "\n"){
+  if(user_data == '\n'){
     xTaskNotifyFromISR(handle_cmd_task, 0, eNoAction, NULL);
   }
 

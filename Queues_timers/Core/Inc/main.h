@@ -38,7 +38,31 @@ extern "C" {
 
 /* Exported types ------------------------------------------------------------*/
 /* USER CODE BEGIN ET */
+typedef struct{
+  uint8_t payload[10];
+  uint8_t len;
+}command_t;
 
+typedef enum{
+  sMainMenu = 0,
+  sLedEffect,
+  sRTCMenu,
+  sRTCTimeConfig,
+  sRTCDateConfig,
+  sRTCReport
+}state_t;
+
+
+extern TaskHandle_t handle_menu_task;
+extern TaskHandle_t handle_cmd_task;
+extern TaskHandle_t handle_print_task;
+extern TaskHandle_t handle_led_task;
+extern TaskHandle_t handle_rtc_task;
+
+extern QueueHandle_t queue_data;
+extern QueueHandle_t queue_print;
+
+extern state_t curr_state;
 /* USER CODE END ET */
 
 /* Exported constants --------------------------------------------------------*/
@@ -132,6 +156,8 @@ void rtc_task(void* parameters);
 #define MEMS_INT2_GPIO_Port GPIOE
 
 /* USER CODE BEGIN Private defines */
+
+
 
 /* USER CODE END Private defines */
 
