@@ -10,12 +10,13 @@
  ******************************************************************************
  * @attention
  *
- * Copyright (c) 2020-2024 STMicroelectronics.
- * All rights reserved.
+ * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
+ * All rights reserved.</center></h2>
  *
- * This software is licensed under terms that can be found in the LICENSE file
- * in the root directory of this software component.
- * If no LICENSE file comes with this software, it is provided AS-IS.
+ * This software component is licensed by ST under BSD 3-Clause license,
+ * the "License"; You may not use this file except in compliance with the
+ * License. You may obtain a copy of the License at:
+ *                        opensource.org/licenses/BSD-3-Clause
  *
  ******************************************************************************
  */
@@ -59,6 +60,7 @@ void ITM_SendChar(uint8_t ch)
   //Write to ITM stimulus port0
   ITM_STIMULUS_PORT0 = ch;
 }
+
 /* Variables */
 extern int __io_putchar(int ch) __attribute__((weak));
 extern int __io_getchar(void) __attribute__((weak));
@@ -80,8 +82,6 @@ int _getpid(void)
 
 int _kill(int pid, int sig)
 {
-  (void)pid;
-  (void)sig;
   errno = EINVAL;
   return -1;
 }
@@ -94,7 +94,6 @@ void _exit (int status)
 
 __attribute__((weak)) int _read(int file, char *ptr, int len)
 {
-  (void)file;
   int DataIdx;
 
   for (DataIdx = 0; DataIdx < len; DataIdx++)
@@ -102,12 +101,11 @@ __attribute__((weak)) int _read(int file, char *ptr, int len)
     *ptr++ = __io_getchar();
   }
 
-  return len;
+return len;
 }
 
 __attribute__((weak)) int _write(int file, char *ptr, int len)
 {
-  (void)file;
   int DataIdx;
 
   for (DataIdx = 0; DataIdx < len; DataIdx++)
@@ -120,71 +118,57 @@ __attribute__((weak)) int _write(int file, char *ptr, int len)
 
 int _close(int file)
 {
-  (void)file;
   return -1;
 }
 
 
 int _fstat(int file, struct stat *st)
 {
-  (void)file;
   st->st_mode = S_IFCHR;
   return 0;
 }
 
 int _isatty(int file)
 {
-  (void)file;
   return 1;
 }
 
 int _lseek(int file, int ptr, int dir)
 {
-  (void)file;
-  (void)ptr;
-  (void)dir;
   return 0;
 }
 
 int _open(char *path, int flags, ...)
 {
-  (void)path;
-  (void)flags;
   /* Pretend like we always fail */
   return -1;
 }
 
 int _wait(int *status)
 {
-  (void)status;
   errno = ECHILD;
   return -1;
 }
 
 int _unlink(char *name)
 {
-  (void)name;
   errno = ENOENT;
   return -1;
 }
 
 int _times(struct tms *buf)
 {
-  (void)buf;
   return -1;
 }
 
 int _stat(char *file, struct stat *st)
 {
-  (void)file;
   st->st_mode = S_IFCHR;
   return 0;
 }
 
 int _link(char *old, char *new)
 {
-  (void)old;
-  (void)new;
   errno = EMLINK;
   return -1;
 }
@@ -197,9 +181,6 @@ int _fork(void)
 
 int _execve(char *name, char **argv, char **env)
 {
-  (void)name;
-  (void)argv;
-  (void)env;
   errno = ENOMEM;
   return -1;
 }
